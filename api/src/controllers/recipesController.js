@@ -1,7 +1,7 @@
 const { Recipe, Diet } = require('../db.js');
 const axios = require('axios');
 const {API_KEY} = process.env;
-const numRecipe = 2;
+const numRecipe = 100;
 
 //TRAIGO LOS DATOS DE LA API Y LO DEVUELVO EN EN UN OBJETO JSON
 const getApiInfo = async () => {
