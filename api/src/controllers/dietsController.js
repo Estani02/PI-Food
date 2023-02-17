@@ -32,7 +32,7 @@ const addDietsDb = async () => {
         })
 
     } catch (error) {
-        console.log(error)
+        console.log("se acabo los request de la api")
     }
 };
 

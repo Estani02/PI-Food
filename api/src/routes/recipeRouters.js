@@ -1,7 +1,8 @@
 const { Router } = require('express');
 const { getAllInfo } = require('../controllers/recipesController');
-const axios = require('axios');
 const router = Router();
+const {Diet, Recipe} = require('../db.js');
+const axios = require('axios');
 
 router.get('/', async (req, res) => {
     try {
@@ -45,6 +46,36 @@ router.get('/:id', async (req, res) => {
             .status(404)
             .send(error)
     }
+});
+
+router.post('/', async (req, res) => {
+    let {
+        name,
+        image,
+        steps,
+        health_score,
+        summary
+    } = req.body;
+    if(name && image && steps && health_score && summary){
+        const createRecipe = await Recipe.create({
+            name: name,
+            image: image,
+            steps: steps, 
+            health_score: health_score,
+            summary: summary,
+        });
+        req.body.diets.map(async e => {
+            const findDiet = await Diet.findAll({
+                where: {name: e}
+            });
+            createRecipe.addDiet(findDiet);
+            console.log(req.body.diets);
+        })
+        res.status(200).json(createRecipe)
+    } else {
+        res.status(404).send('Data needed to proceed is missing')
+    }
+
 })
 
 

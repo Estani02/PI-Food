@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     steps: {
-      type: DataTypes.STRING(1000),
+      type: DataTypes.TEXT,
       allowNull:false
     },
     health_score: {
