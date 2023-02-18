@@ -1,0 +1,30 @@
+.containerAll{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.containerRecipes{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+    margin-top: 80px;
+    font-size: 16px;
+    gap: 28px;
+}
+
+.cardRecipe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageRecipe{
+    height: 166px;
+    width: 259px;
+}
+
+.link{
+    text-decoration: none;
+    color: rgb(33, 56, 5);
+}
