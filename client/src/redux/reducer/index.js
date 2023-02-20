@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES } from "../actions";
+import { GET_ALL_RECIPES, GET_SEARCH_RECIPES } from "../actions";
 
 
 const initialState = {
@@ -14,7 +14,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 allRecipes: payload,
                 temporal: payload
             }
-    
+        case GET_SEARCH_RECIPES:
+            return {
+                ...state,
+                temporal: [
+                    ...state.allRecipes.filter((element) => 
+                    element.title.toString().toLowerCase().includes(payload.toString().toLowerCase()))
+                ]
+            }
         default:
             return { ...state }
     }

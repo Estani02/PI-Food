@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import RecipesForm from '../../components/recipesForm/RecipesForm'
+import RecipesForm from '../recipesForm/RecipesForm'
+import SearchBar from '../../components/searchBar/SearchBar'
 import { getAllRecipes } from '../../redux/actions'
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div>
         RECIPES
+        <SearchBar />
         <RecipesForm />
     </div>
   )

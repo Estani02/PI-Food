@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
-import Pagination from '../pagination/Pagination';
+import Pagination from '../../components/pagination/Pagination';
 import s from './RecipeForm.module.css'
 
 export default function RecipesForm() {
@@ -21,7 +21,11 @@ export default function RecipesForm() {
 
     return (
         <>
-            <div className={s.conteinerAll}>
+            { recipes.length === 0 ? (
+                <div>
+                    Recipe not found
+                </div>
+            )  : (<div className={s.conteinerAll}>
                 <dl className={s.containerRecipes}>
                     {onlyNightAllRecipe.map((recipe) => //se renderiza cada recipe traido del server
                         <dd key={recipe.id} className={s.cardRecipe}>
@@ -35,7 +39,7 @@ export default function RecipesForm() {
                     )}
                 </dl>
                 <Pagination max={maxRecipes}  setPage={setPage} page={page}/>
-            </div>
+            </div>)}
         </>
     )
 }
