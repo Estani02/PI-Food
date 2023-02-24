@@ -1,4 +1,10 @@
-import { GET_ALL_DIETS, GET_ALL_RECIPES, GET_ORDER_ORIGIN, GET_ORDER_RECIPES, GET_RECIPE_FILTER, GET_SEARCH_RECIPES } from "../actions";
+import { GET_ALL_DIETS, 
+        GET_ALL_RECIPES, 
+        GET_ORDER_RECIPES, 
+        GET_ORDER_SCORE, 
+        GET_RECIPE_FILTER, 
+        GET_SEARCH_RECIPES 
+    } from "../actions";
 
 
 const initialState = {
@@ -47,7 +53,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     temporal: sort_list("title", state.temporal, true)
                 }
             }
-        case GET_ORDER_ORIGIN:
+        case GET_RECIPE_FILTER:
             if (payload === "all") {
                 return {
                     ...state,
@@ -56,30 +62,29 @@ const rootReducer = (state = initialState, { type, payload }) => {
             } else if (payload === "api") {
                 return {
                     ...state,
-                    temporal: state.temporal.filter((recipe) =>
+                    temporal: state.allRecipes.filter((recipe) =>
                         !recipe.hasOwnProperty("createInDb")
                     )
                 }
             } else {
                 return {
                     ...state,
-                    temporal: state.temporal.filter((recipe) =>
+                    temporal: state.allRecipes.filter((recipe) =>
                         recipe.hasOwnProperty("createInDb")
                     )
                 }
             }
-        case GET_RECIPE_FILTER:
-            if(payload === "all"){
-                return{
+        case GET_ORDER_SCORE:
+            if(payload === "asc"){
+                return {
                     ...state,
-                    temporal: state.allRecipes
+                    temporal: sort_list("healthScore", state.temporal)
                 }
-            }
-            return {
-                ...state,
-                temporal: state.temporal.filter((recipe) => 
-                    recipe.diets.includes(payload)
-                    )
+            } else {
+                return {
+                    ...state,
+                    temporal: sort_list("healthScore", state.temporal, true)
+                }
             }
         default:
             return { ...state }

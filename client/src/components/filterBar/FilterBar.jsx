@@ -6,21 +6,32 @@ import s from './FilterBar.module.css'
 export default function FilterBar() {
 
   const diets = useSelector(state => state.diets)
-  //const recipes = useSelector(state => state.recipes)
+  const temporal = useSelector(state => state.temporal)
   const dispatch = useDispatch();
 
   function handleChange(e){
     dispatch(filterByDiet("all"))
     dispatch(filterByDiet(e.target.value));
   }
+  
+function handleChangeOrgin(order){
+  dispatch(filterByDiet(order.target.value))
+  console.log(temporal);
+}
 
   return (
     <div className={s.container}>
+      <span>Filter by </span>
       <select onChange={handleChange} className={s.select}>
         <option value={"all"}>Select diet</option>
         {diets.map(diet => 
-            <option value={diet.name} key={diet.name}>{diet.name}</option>
+            <option value={diet.name} key={diet.name}>{diet.name[0].toUpperCase() + diet.name.slice(1)}</option>
           )}
+      </select>
+      <select className={s.select} onChange={handleChangeOrgin}>
+        <option value={"all"}>ALL</option>
+        <option value={"api"}>Only api</option>
+        <option value={"db"}>Only creted</option>
       </select>
     </div>
   )

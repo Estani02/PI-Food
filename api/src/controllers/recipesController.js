@@ -7,6 +7,11 @@ const numRecipe = 100;
 const getApiInfo = async () => {
     const apiInfo = await axios(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=${numRecipe}&apiKey=${API_KEY}`);
     const resultApiInfo = await apiInfo.data.results.map(data => {
+    
+        if(data.vegetarian){
+            data.diets.push("vegetarian")
+        }
+    
         return {
             id: data.id,
             title: data.title,
@@ -21,7 +26,7 @@ const getApiInfo = async () => {
 };
 //TRAIGO TODOS LAS RECIPES CREADOS DESDE LA BASE DE DATOS EN LA TABLA recipe, Y QUE INCLUYA LA TABLA diets CON SU ATRIBUTO NAME
 const getDbInfo = async () => {
-    return await Recipe.findAll({
+     const recipe = await Recipe.findAll({
         include: {
             model: Diet,
             attributes: ['name'],
@@ -29,9 +34,24 @@ const getDbInfo = async () => {
                 attributes: [],
             }, 
         }
-    });
+    })
 
+    const recipesDB = await recipe.map(data =>{
+        return {
+            id: data.id,
+            title: data.name,
+            imag: data.image,
+            healthScore: data.healthScore,
+            summary: data.summary,
+            steps: data.steps,
+            createInDb: true,
+            diets: data.diets.map(diet=> diet.name)
+        }
+    })
+    return recipesDB
 };
+
+
 
 //TRAIGO TODOS LOS RECIPES, TANTO DE LA API COMO DE LA DB.
 const getAllInfo = async () => {
@@ -41,5 +61,5 @@ const getAllInfo = async () => {
 };
 
 module.exports = {
-    getAllInfo
+    getAllInfo,
 }

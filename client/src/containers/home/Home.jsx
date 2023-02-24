@@ -8,12 +8,12 @@ import OrderBar from '../../components/orderBar/OrderBar'
 
 export default function Home() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(()=> {
         dispatch(getAllRecipes())
         dispatch(getDiets())
-    }, [dispatch])
+      }, [dispatch])
   return (
     <div>
         RECIPES

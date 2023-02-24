@@ -10,7 +10,7 @@ const getAllDietsApi = async () => {
     });
     diets.push("vegetarian")
     const newArray = [].concat(... await diets);
-    const uniquesDiets = [... new Set(newArray)].map((diet, index) => ({id: index, name: diet}) )
+    const uniquesDiets = [... new Set(newArray)].map((diet, index) => ({id: index, name: diet}) ) //[...new Set] Devuelve un nuevo objeto iterador que genera los values de cada elemento del objeto Set en el orden de inserción
     return uniquesDiets
 };
 
