@@ -1,12 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterByDiet } from '../../redux/actions';
+import { filterByDiet, filterByOrigin } from '../../redux/actions';
 import s from './FilterBar.module.css'
 
 export default function FilterBar() {
 
   const diets = useSelector(state => state.diets)
-  const temporal = useSelector(state => state.temporal)
   const dispatch = useDispatch();
 
   function handleChange(e){
@@ -15,8 +14,7 @@ export default function FilterBar() {
   }
   
 function handleChangeOrgin(order){
-  dispatch(filterByDiet(order.target.value))
-  console.log(temporal);
+  dispatch(filterByOrigin(order.target.value))
 }
 
   return (

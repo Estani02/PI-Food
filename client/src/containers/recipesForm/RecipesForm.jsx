@@ -27,6 +27,7 @@ export default function RecipesForm() {
                 </div>
             )  : (
             <div className={s.conteinerAll}>
+                <Link to='/create' className={s.link}>CREATE RECIPE </Link>
                 <dl className={s.containerRecipes}>
                     {onlyNightAllRecipe.map((recipe) => //se renderiza cada recipe traido del server
                         <dd key={recipe.id} className={s.cardRecipe}>
