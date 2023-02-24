@@ -1,10 +1,13 @@
-import { GET_ALL_DIETS, 
-        GET_ALL_RECIPES, 
-        GET_ORDER_RECIPES, 
-        GET_ORDER_SCORE, 
-        GET_RECIPE_FILTER, 
-        GET_SEARCH_RECIPES 
-    } from "../actions";
+import {
+    GET_ALL_RECIPES,
+    GET_SEARCH_RECIPES,
+    ORDER_ALPHA,
+    GET_ALL_DIETS,
+    ORIGIN_FILTER,
+    DIET_FILTER,
+    ORDER_SCORE,
+    //POST_RECIPE
+} from "../actions";
 
 
 const initialState = {
@@ -28,20 +31,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 allRecipes: payload,
                 temporal: payload
             }
+
         case GET_ALL_DIETS:
-            return{
+            return {
                 ...state,
                 diets: payload
             }
+
         case GET_SEARCH_RECIPES:
             return {
                 ...state,
                 temporal: [
-                    ...state.allRecipes.filter((element) =>
+                    ...state.temporal.filter((element) =>
                         element.title.toString().toLowerCase().includes(payload.toString().toLowerCase()))
                 ]
             }
-        case GET_ORDER_RECIPES:
+
+        case ORDER_ALPHA:
             if (payload === "a-z") {
                 return {
                     ...state,
@@ -53,7 +59,35 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     temporal: sort_list("title", state.temporal, true)
                 }
             }
-        case GET_RECIPE_FILTER:
+
+        case ORDER_SCORE:
+            if (payload === "asc") {
+                return {
+                    ...state,
+                    temporal: sort_list("healthScore", state.temporal)
+                }
+            } else {
+                return {
+                    ...state,
+                    temporal: sort_list("healthScore", state.temporal, true)
+                }
+            }
+
+        case DIET_FILTER:
+            if(payload === "all"){
+                return{
+                    ...state,
+                    temporal: state.allRecipes
+                }
+            }
+            return {
+                ...state,
+                temporal: state.temporal.filter((recipe) => 
+                    recipe.diets.includes(payload)
+                    )
+            }
+
+        case ORIGIN_FILTER:
             if (payload === "all") {
                 return {
                     ...state,
@@ -74,18 +108,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     )
                 }
             }
-        case GET_ORDER_SCORE:
-            if(payload === "asc"){
-                return {
-                    ...state,
-                    temporal: sort_list("healthScore", state.temporal)
-                }
-            } else {
-                return {
-                    ...state,
-                    temporal: sort_list("healthScore", state.temporal, true)
-                }
-            }
+
+
         default:
             return { ...state }
     }
