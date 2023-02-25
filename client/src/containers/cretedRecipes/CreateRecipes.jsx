@@ -47,20 +47,13 @@ export default function CreateRecipes() {
             ...input,
             [e.target.name]: e.target.value
         });
-
+        setError(validation(input, recipes));
     };
 
     function handleSubmit(e) {
         e.preventDefault();
-        setError(validation(input, recipes));
-        console.log(error.name);
-        if (
-            !error.name &&
-            !error.summary &&
-            !error.steps &&
-            !error.diet &&
-            !error.health_score
-        ) {
+        setError(validation(input, recipes));      
+        if (!error) { 
             dispatch(postRecipe(input));
             alert("Your recipe has been created successfully");
             navigate('/home')
@@ -123,7 +116,7 @@ export default function CreateRecipes() {
                     name="image"
                     required
                 />
-                {/* {error.name ? <span>{error.name}</span> : undefined} */}
+                {error.image ? <span>{error.image}</span> : undefined}
 
                 <select
                     multiple

@@ -47,13 +47,14 @@ export default function validation({ name, summary, health_score, steps, image, 
     if (!RegExpression.test(steps)) {
         error.steps = "Number and special character are not allowed"
     }
-    // //IMAGE
-    // if(!image){
-    //     error.image = "A image is required"
-    // }
+    //IMAGE
+    if(!image){
+        error.image = "A image is required"
+    }
     //DIETS
     if (!diets.length) {
         error.diets = 'Must choose a diets'
     }
+    
     return error
 }
