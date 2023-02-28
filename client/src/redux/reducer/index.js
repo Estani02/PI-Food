@@ -6,6 +6,7 @@ import {
     ORIGIN_FILTER,
     DIET_FILTER,
     ORDER_SCORE,
+    GET_DETAIL_RECIPE,
     //POST_RECIPE
 } from "../actions";
 
@@ -13,7 +14,9 @@ import {
 const initialState = {
     allRecipes: [],
     temporal: [],
-    diets: []
+    diets: [],
+    detailRecipe: [],
+    loading: false
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -26,11 +29,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
         case GET_ALL_RECIPES:
-            return {
-                ...state,
-                allRecipes: payload,
-                temporal: payload
-            }
+                return {
+                    ...state,
+                    allRecipes: payload,
+                    temporal: payload,
+                    loading: true
+                }
 
         case GET_ALL_DIETS:
             return {
@@ -45,6 +49,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     ...state.temporal.filter((element) =>
                         element.title.toString().toLowerCase().includes(payload.toString().toLowerCase()))
                 ]
+
             }
 
         case ORDER_ALPHA:
@@ -71,6 +76,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     ...state,
                     temporal: sort_list("healthScore", state.temporal, true)
                 }
+            }
+
+        case GET_DETAIL_RECIPE:
+            return {
+                ...state,
+                detailRecipe: payload[0]
             }
 
         case DIET_FILTER:

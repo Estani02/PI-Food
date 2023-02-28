@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import RecipesForm from '../recipesForm/RecipesForm'
-import SearchBar from '../../components/searchBar/SearchBar'
 import { getAllRecipes, getDiets } from '../../redux/actions'
-import FilterBar from '../../components/filterBar/FilterBar'
 import OrderBar from '../../components/orderBar/OrderBar'
+import s from './Home.module.css'
+import FilterBar from '../../components/filterBar/FilterBar'
 
 export default function Home() {
 
     const dispatch = useDispatch();
+    const recipes = useSelector(state => state.temporal);
 
+    
     useEffect(()=> {
         dispatch(getAllRecipes())
         dispatch(getDiets())
       }, [dispatch])
+
   return (
-    <div>
-        RECIPES
-        <SearchBar />
+    <div className={s.containerHome}>
+      <section className={"ERR_BAD_REQUEST" === recipes.code ? s.sectionError : s.section}>
+        <button onClick={()=>dispatch(getAllRecipes())}>Reset all</button>
         <OrderBar />
         <FilterBar />
+      </section>
         <RecipesForm />
     </div>
   )

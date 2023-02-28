@@ -1,0 +1,40 @@
+.containerHome {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150PX;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionError {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.sectionError button {
+    width: 250px;
+}
+
+@media (max-width: 770px) {
+    .containerHome {
+        flex-direction: column;
+    }
+
+    .sectionError {
+        position: relative; 
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100vh;
+    }
+
+    .sectionError button {
+        width: 100%;
+    }
+}

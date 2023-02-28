@@ -23,13 +23,15 @@ export default function OrderBar() {
   }
 
   return (
-    <div>
-      <span>Order by </span>
-      <select className={s.select} onChange={handleChange}>
+    <div className={s.container}>
+      <span className={s.title}>Order by </span>
+      <select className={s.select} onChange={handleChange} >
+        <option>Alphabetical</option>
         <option value={"a-z"}>A-Z</option>
         <option value={"z-a"}>Z-A</option>
       </select>
       <select className={s.select} onChange={handleChange}>
+        <option>Health Score</option>
         <option value={"asc"}>⬆️</option>
         <option value={"des"}>⬇️</option>
       </select>

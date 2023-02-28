@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // eslint-disable-next-line jsx-a11y/anchor-is-valid
 import React, { useState } from 'react'
 import s from './Pagination.module.css'
@@ -41,7 +42,7 @@ export default function Pagination({ page, max, setPage }) {
                 </button>
                 {numberPageArray.map((number) => (
                     <li key={number} className={`${input === number ? s.liStyleActive : s.liStyle}`}>
-                        <a onClick={() => handleClick(number)} href={`/home/#`} className={s.aStyle}>{number}</a>
+                        <a onClick={() => handleClick(number)} href={`#`} className={s.aStyle}>{number}</a>
                     </li>
                 ))}
                 <button

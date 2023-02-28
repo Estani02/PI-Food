@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterByDiet, filterByOrigin } from '../../redux/actions';
-import s from './FilterBar.module.css'
+import { filterByDiet, filterByOrigin } from '../../redux/actions'
+import s from '../orderBar/OrderBar.module.css'
 
 export default function FilterBar() {
 
@@ -19,7 +19,7 @@ function handleChangeOrgin(order){
 
   return (
     <div className={s.container}>
-      <span>Filter by </span>
+      <span className={s.title}>Filter by </span>
       <select onChange={handleChange} className={s.select}>
         <option value={"all"}>Select diet</option>
         {diets.map(diet => 

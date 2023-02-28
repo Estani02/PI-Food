@@ -8,17 +8,18 @@ export const ORIGIN_FILTER = "ORIGIN_FILTER"
 export const DIET_FILTER = "DIET_FILTER"
 export const ORDER_SCORE = "ORDER_SCORE"
 export const POST_RECIPE = "POST_RECIPE"
+export const GET_DETAIL_RECIPE = "GET_DETAIL_RECIPE"
 
 const URL_API = "http://localhost:3001";
 
 
 export function getAllRecipes() {
     const urlAllRecipes = `${URL_API}/recipes`
-    return async function (dispatch) {
-        const r = await fetch(urlAllRecipes);
-        const data = await r.json();
-        await dispatch({ type: GET_ALL_RECIPES, payload: data })
-    }
+        return async function (dispatch) {
+                const r = await fetch(urlAllRecipes);
+                const data = await r.json();
+                await dispatch({ type: GET_ALL_RECIPES, payload: data })
+        }
 };
 
 export function getDiets() {
@@ -36,6 +37,16 @@ export function getSearchRecipes(title) {
         payload: title
     }
 };
+
+export function getDetailRecipe(title){
+    const urlDetail = `${URL_API}/recipes?title=${title}`
+    return async function(dispatch){
+        const r = await fetch(urlDetail);
+        const data = await r.json();
+        await dispatch({ type: GET_DETAIL_RECIPE, payload: data })
+    }
+    
+}
 
 export function orderByAlphabetical(order) {
     return {
