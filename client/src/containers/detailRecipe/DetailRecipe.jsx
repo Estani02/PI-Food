@@ -47,7 +47,12 @@ export default function DetailRecipe() {
                 {recipe.diets?.map(diet => <li>{diet.toUpperCase()}</li>)}
             </ul>
             <section>
-                {recipe.steps?.map((s, index) => <p key={index}>{index + 1}-{s}</p>)}
+                {!Array.isArray(recipe.steps) ? 
+                    <p>{recipe.steps}</p> 
+                    : 
+                    recipe.steps.map((s, i) => 
+                    <p key={i}>{i+1}-{s}</p>
+                )}
             </section>
         </div>
     )
