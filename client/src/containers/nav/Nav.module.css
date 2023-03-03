@@ -49,3 +49,21 @@
 .link:hover{
     background-color: rgba(211, 219, 219, 0.079);
 }
+
+.iconGitHub{
+    height: 33px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+}
+
+.iconLinkedin{
+    height: 28px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+}
+
+.iconGitHub:hover{
+    transform: scale(1.1, 1.1);
+}
+
+.iconLinkedin:hover{
+    transform: scale(1.1, 1.1);
+}

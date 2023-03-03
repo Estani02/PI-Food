@@ -17,6 +17,7 @@ export default function Home() {
     dispatch(getDiets())
   }, [dispatch])
 
+  
   return (
     <div className={recipes.code ? s.containerError : s.containerHome}>
       <section className={recipes.code ? s.sectionError : s.section}>

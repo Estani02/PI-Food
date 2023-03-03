@@ -37,7 +37,7 @@ export default function DetailRecipe() {
         htmlWithoutLinks = removeLinks(recipe.summary);
     }
 
-    console.log(recipe);
+    // console.log(recipe);
 
     return (
         <div className={s.container}>

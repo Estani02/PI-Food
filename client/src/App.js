@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import CreateRecipes from './containers/cretedRecipes/CreateRecipes';
 import DetailRecipe from './containers/detailRecipe/DetailRecipe';
@@ -6,10 +6,14 @@ import Home from './containers/home/Home';
 import LandingPage from './containers/landingPage/LandingPage';
 import Nav from './containers/nav/Nav';
 
+
 function App() {
+
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <div className="App">
-      <Nav />
+      {location.pathname === '/' ? undefined : <Nav />}
       <Routes>
         <Route path='/' element = { <LandingPage /> } />
         <Route path='/home' element = { <Home /> } />
