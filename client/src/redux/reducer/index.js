@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 return {
                     ...state,
                     allRecipes: payload,
-                    temporal: payload,
+                    temporal: payload
                 }
 
         case GET_ALL_DIETS:

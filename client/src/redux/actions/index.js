@@ -20,7 +20,6 @@ export function getAllRecipes() {
                 const data = await r.json();
                 await dispatch({ type: GET_ALL_RECIPES, payload: data })
         }
-
 };
 
 export function getDiets() {

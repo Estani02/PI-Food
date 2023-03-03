@@ -42,7 +42,9 @@ export default function DetailRecipe() {
     return (
         <div className={s.container}>
             {recipe === undefined ? (
-                <div></div>
+                <div className={s.conteneinerLoading}>
+                    <div className={s.loader} id="loader">Loading...</div>
+                </div>
             ) : recipe === null ? (
                 <>
                 </>
