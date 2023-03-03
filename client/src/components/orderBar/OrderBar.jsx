@@ -32,8 +32,8 @@ export default function OrderBar() {
       </select>
       <select className={s.select} onChange={handleChange}>
         <option>Health Score</option>
-        <option value={"asc"}>⬆️</option>
-        <option value={"des"}>⬇️</option>
+        <option value={"des"}>⬆️</option>
+        <option value={"asc"}>⬇️</option>
       </select>
     </div>
   )

@@ -14,8 +14,8 @@ export default function Nav() {
                 <div>
                     <li><NavLink to='/home' className={s.link}>Home</NavLink></li>
                     <li><NavLink to='/create' className={s.link}>Create recipe</NavLink></li>
-                    <li><NavLink to='https://ar.linkedin.com/in/estanislao-olmedo-208510247?original_referer=https%3A%2F%2Fwww.google.com%2F'><img src={linkedin} alt="Linkedink" className={s.iconLinkedin}/></NavLink></li>
-                    <li><NavLink to='https://github.com/Estani02'><img src={git} alt="Git Hub" className={s.iconGitHub}/></NavLink></li>
+                    <li><a target='_blank' href='https://ar.linkedin.com/in/estanislao-olmedo-208510247?original_referer=https%3A%2F%2Fwww.google.com%2F' rel="noreferrer"><img src={linkedin} alt="Linkedink" className={s.iconLinkedin}/></a></li>
+                    <li><a target='_blank' href='https://github.com/Estani02' rel="noreferrer"><img src={git} alt="Git Hub" className={s.iconGitHub}/></a></li>
                 </div>
             </ul>
         </nav>
