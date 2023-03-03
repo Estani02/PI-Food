@@ -44,7 +44,7 @@
 }
 
 button{
-    background-color: rgb(0, 0, 0);
+    background-color: #24242d;
     border: none;
     border-radius: 3px ;
     padding: 5px 10px;
@@ -55,6 +55,7 @@ button{
     height: 30px;
     margin: 4px;
     color: white;
+    transition: background-color 0.4s;
 }
 
 button:hover{

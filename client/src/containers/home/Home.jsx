@@ -18,13 +18,14 @@ export default function Home() {
       }, [dispatch])
 
   return (
-    <div className={s.containerHome}>
-      <section className={"ERR_BAD_REQUEST" === recipes.code ? s.sectionError : s.section}>
+    <div className={recipes.code ? s.containerError : s.containerHome}>
+      <section className={recipes.code ? s.sectionError : s.section}>
         <button onClick={()=>dispatch(getAllRecipes())}>Reset all</button>
         <OrderBar />
         <FilterBar />
       </section>
         <RecipesForm />
+        <div></div>
     </div>
   )
 }

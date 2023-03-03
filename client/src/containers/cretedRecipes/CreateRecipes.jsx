@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { getDiets, postRecipe } from '../../redux/actions'
 import s from './CreateRecipes.module.css'
 import validation from './validation'
+import chefCreate from '../../utils/chefCreate.png'
 
 export default function CreateRecipes() {
 
@@ -24,20 +25,20 @@ export default function CreateRecipes() {
 
     useEffect(() => {
         dispatch(getDiets())
-    }, [dispatch])
+        console.log(input.diets);
+    }, [dispatch, input.diets])
 
     function handleSelect(e) {
-        const options = e.target.value;
-        if (!input.diets.includes(options)) {
+        if (e.target.checked) {
             setInput({
                 ...input,
                 diets: [...input.diets, e.target.value]
             })
-        } else {
-            const option = [...input.diets];
-            const index = option.indexOf(options);
-            option.splice(index, 1);
-            input.diets(option)
+        } else if (!e.target.checked) {
+            setInput({
+                ...input,
+                diets: input.diets.filter(d => d !== e.target.value)
+            })
         }
     };
 
@@ -52,8 +53,8 @@ export default function CreateRecipes() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setError(validation(input, recipes));      
-        if (!error) { 
+        setError(validation(input, recipes));
+        if (!error) {
             dispatch(postRecipe(input));
             alert("Your recipe has been created successfully");
             navigate('/home')
@@ -66,74 +67,91 @@ export default function CreateRecipes() {
 
     return (
         <div className={s.container}>
-            <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
-                <input
-                    type='text'
-                    placeholder='Name Recipes'
-                    value={input.title}
-                    name="name"
-                    onChange={(e) => handelChange(e)}
-                    required
-                />
-                {error.name ? <span>{error.name}</span> : undefined}
+            <h1>CREATE YOUR OWN RECIPE</h1>
+            <div className={s.containerInfo}>
+                <img src={chefCreate} alt="chef create" className={s.img} />
+                <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
+                    <input
+                        type='text'
+                        placeholder='Name Recipes'
+                        value={input.title}
+                        name="name"
+                        onChange={(e) => handelChange(e)}
+                        required
+                        className={s.name}
+                    />
+                    {error.name ? <span>*{error.name}</span> : undefined}
 
-                <input
-                    type='text'
-                    placeholder='Summary'
-                    value={input.summary}
-                    onChange={(e) => handelChange(e)}
-                    name="summary"
-                    required
-                />
-                {error.summary ? <span>{error.summary}</span> : undefined}
-                
-                <input
-                    type='number'
-                    placeholder='Health Score'
-                    value={input.health_score}
-                    onChange={(e) => handelChange(e)}
-                    name="health_score"
-                    maxLength="3"
-                    required
-                />
-                {error.health_score ? <span>{error.health_score}</span> : undefined}
+                    <textarea
+                        type='text'
+                        placeholder='Summary'
+                        value={input.summary}
+                        onChange={(e) => handelChange(e)}
+                        name="summary"
+                        required
+                        className={s.summary}
+                    />
+                    {error.summary ? <span>*{error.summary}</span> : undefined}
 
-                <input
-                    type='text'
-                    placeholder='Steps'
-                    value={input.steps}
-                    onChange={(e) => handelChange(e)}
-                    name="steps"
-                    required
-                />
-                {error.steps ? <span>{error.steps}</span> : undefined}
+                    <input
+                        type='number'
+                        placeholder='Health Score'
+                        value={input.health_score}
+                        onChange={(e) => handelChange(e)}
+                        name="health_score"
+                        maxLength="3"
+                        required
+                        className={s.health}
+                    />
+                    {error.health_score ? <span>*{error.health_score}</span> : undefined}
 
-                <input
-                    type='text'
-                    placeholder='URL Image'
-                    value={input.image}
-                    onChange={(e) => handelChange(e)}
-                    name="image"
-                    required
-                />
-                {error.image ? <span>{error.image}</span> : undefined}
+                    <textarea
+                        type='text'
+                        placeholder='Steps'
+                        value={input.steps}
+                        onChange={(e) => handelChange(e)}
+                        name="steps"
+                        required
+                        className={s.steps}
+                    />
+                    {error.steps ? <span>*{error.steps}</span> : undefined}
 
-                <select
-                    multiple
-                    onChange={handleSelect}
-                    className={s.select}
-                >
-                    <option disabled >Select diets</option>
-                    {diets.map(diet =>
-                        <option value={diet.name} key={diet.id}>
-                            {diet.name[0].toUpperCase() + diet.name.slice(1)}
-                        </option>
-                    )}
-                </select>
-            </form>
-            {error.diets ? <span>{error.diets}</span> : undefined}
+                    <input
+                        type='text'
+                        placeholder='URL Image'
+                        value={input.image}
+                        onChange={(e) => handelChange(e)}
+                        name="image"
+                        required
+                        className={s.imgUrl}
+                    />
+                    {error.image ? <span>*{error.image}</span> : undefined}
 
-            <button type='submit' onClick={handleSubmit}>Create</button>
+                    <div className={s.containerDiets}>
+                        {
+                            diets.map(diet => (
+                                <label key={diet.name} htmlFor={diet.name}>
+                                    <div className={s.byDiet}>
+                                        <input
+                                            type="checkbox"
+                                            id={diet.name}
+                                            value={diet.name}
+                                            onChange={(e) => handleSelect(e)}
+                                        />
+                                        <div className={s.circle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#2a852a7a' }}
+                                        ><img src={`images/diets/${diet.name}.png`} alt={diet.name} height="30px" /></div>
+                                        <div style={{ width: '8px' }}></div>
+                                        {diet.name[0].toUpperCase() + diet.name.slice(1)}
+                                    </div>
+                                </label>
+                            ))
+                        }
+                    </div>
+
+                    {error.diets ? <span>{error.diets}</span> : undefined}
+                    <button type='submit' onClick={handleSubmit}>Create</button>
+                </form>
+            </div>
         </div>
     )
 }

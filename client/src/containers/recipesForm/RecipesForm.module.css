@@ -17,11 +17,24 @@
     gap: 23px;
 }
 
+.containerEmpty{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 1200px) {
     .containerRecipes {
         grid-template-columns: 1fr 1fr;
     }
+    .containerEmpty{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
 }
+
+
 
 .cardRecipe {
     margin-right: 25px;

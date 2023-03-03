@@ -20,6 +20,7 @@ export function getAllRecipes() {
                 const data = await r.json();
                 await dispatch({ type: GET_ALL_RECIPES, payload: data })
         }
+
 };
 
 export function getDiets() {
@@ -38,14 +39,22 @@ export function getSearchRecipes(title) {
     }
 };
 
-export function getDetailRecipe(title){
+export function getDetailRecipe(title) {
     const urlDetail = `${URL_API}/recipes?title=${title}`
-    return async function(dispatch){
-        const r = await fetch(urlDetail);
-        const data = await r.json();
-        await dispatch({ type: GET_DETAIL_RECIPE, payload: data })
+    return async function (dispatch) {
+        if (title) {
+            try {
+                const r = await fetch(urlDetail);
+                const data = await r.json();
+                await dispatch({ type: GET_DETAIL_RECIPE, payload: data })
+            } catch (error) {
+                dispatch({ type: GET_DETAIL_RECIPE, payload: null })
+            }
+        } else {
+            dispatch({ type: GET_DETAIL_RECIPE })
+        }
     }
-    
+
 }
 
 export function orderByAlphabetical(order) {

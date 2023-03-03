@@ -8,6 +8,7 @@ import chefError from '../../utils/chefError.png'
 export default function RecipesForm() {
 
     const recipes = useSelector(state => state.temporal);
+    // const recipes = [];
 
     //Pagination
     const [page, setPage] = useState(1);
@@ -15,7 +16,7 @@ export default function RecipesForm() {
 
     let onlyNightAllRecipe = undefined;
     let maxRecipes = undefined;
-    if ("ERR_BAD_REQUEST" !== recipes.code) {
+    if (!recipes.code) {
         onlyNightAllRecipe = recipes
             .slice(                                    //El método slice() devuelve una copia de una parte del array dentro de un nuevo array empezando por inicio hasta fin (fin no incluido). El array original no se modificará.
                 (page - 1) * perPage,                  //number start
@@ -26,7 +27,7 @@ export default function RecipesForm() {
 
     return (
         <>
-            {"ERR_BAD_REQUEST" === recipes.code ? (
+            {recipes.code ? (
                 <div>
                     <img src={chefError} alt='error page' />
                     <h1>Oops... something went wrong, come back in a bit</h1>
@@ -46,9 +47,7 @@ export default function RecipesForm() {
                                     </div>
                                     <div className={s.cardInfo}>
                                         <span className={s.cardCategory}>Recipe</span>
-                                        <Link to={`/recipe/${recipe.title}`} className={s.link}>
                                             <h3 className={s.cardTitle}>{recipe.title}</h3>
-                                        </Link>
                                         <span className={s.cardDiets}>Diets: {recipe.diets.join(', ')}</span>
                                     </div>
                                 </Link>

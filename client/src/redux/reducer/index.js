@@ -7,7 +7,6 @@ import {
     DIET_FILTER,
     ORDER_SCORE,
     GET_DETAIL_RECIPE,
-    //POST_RECIPE
 } from "../actions";
 
 
@@ -15,8 +14,7 @@ const initialState = {
     allRecipes: [],
     temporal: [],
     diets: [],
-    detailRecipe: [],
-    loading: false
+    detailRecipe: undefined,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -33,7 +31,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
                     ...state,
                     allRecipes: payload,
                     temporal: payload,
-                    loading: true
                 }
 
         case GET_ALL_DIETS:
@@ -81,7 +78,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_DETAIL_RECIPE:
             return {
                 ...state,
-                detailRecipe: payload[0]
+                detailRecipe: payload === undefined ? undefined : payload[0]
             }
 
         case DIET_FILTER:

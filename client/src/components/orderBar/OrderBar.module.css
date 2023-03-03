@@ -2,7 +2,7 @@
     margin-top: 50px;
     height: 211px;
     width: 250px;
-    border: 2px solid salmon;
+    /* border: 2px solid salmon; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,8 +12,9 @@
 
 @media (max-width: 770px){
   .container{
-      width: 100%;
+      width: 100vh;
       flex-direction: row;
+      margin-top: 20px;
   }
   .select{
     margin: 20px;
