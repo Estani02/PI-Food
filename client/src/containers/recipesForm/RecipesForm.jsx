@@ -47,7 +47,7 @@ export default function RecipesForm() {
                                     </div>
                                     <div className={s.cardInfo}>
                                         <span className={s.cardCategory}>Recipe</span>
-                                            <h3 className={s.cardTitle}>{recipe.title}</h3>
+                                        <h3 className={s.cardTitle}>{recipe.title}</h3>
                                         <span className={s.cardDiets}>Diets: {recipe.diets.join(', ')}</span>
                                     </div>
                                 </Link>

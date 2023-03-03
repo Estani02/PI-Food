@@ -27,11 +27,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
         case GET_ALL_RECIPES:
-                return {
-                    ...state,
-                    allRecipes: payload,
-                    temporal: payload
-                }
+            return {
+                ...state,
+                allRecipes: payload,
+                temporal: payload
+            }
 
         case GET_ALL_DIETS:
             return {
@@ -82,17 +82,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
             }
 
         case DIET_FILTER:
-            if(payload === "all"){
-                return{
+            if (payload === "all") {
+                return {
                     ...state,
                     temporal: state.allRecipes
                 }
             }
             return {
                 ...state,
-                temporal: state.temporal.filter((recipe) => 
+                temporal: state.temporal.filter((recipe) =>
                     recipe.diets.includes(payload)
-                    )
+                )
             }
 
         case ORIGIN_FILTER:

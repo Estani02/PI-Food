@@ -7,7 +7,7 @@ export default function OrderBar() {
 
   const dispatch = useDispatch();
 
-  function handleChange(order){
+  function handleChange(order) {
     switch (order.target.value) {
       case "a-z":
         return dispatch(orderByAlphabetical(order.target.value))

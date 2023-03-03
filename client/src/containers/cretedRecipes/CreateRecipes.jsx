@@ -25,8 +25,7 @@ export default function CreateRecipes() {
 
     useEffect(() => {
         dispatch(getDiets())
-        console.log(input.diets);
-    }, [dispatch, input.diets])
+    }, [dispatch])
 
     function handleSelect(e) {
         if (e.target.checked) {
