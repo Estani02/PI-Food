@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import Pagination from '../../components/pagination/Pagination'
 import s from './RecipesForm.module.css'
+import sDetail from '../detailRecipe/DetailRecipe.module.css'
 import chefError from '../../utils/chefError.png'
+import { getAllRecipes } from '../../redux/actions'
 
 export default function RecipesForm() {
 
     const recipes = useSelector(state => state.temporal);
     // const recipes = [];
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(getAllRecipes("loading"))
+        dispatch(getAllRecipes())
+    }, [dispatch])
 
     //Pagination
     const [page, setPage] = useState(1);
@@ -28,13 +37,17 @@ export default function RecipesForm() {
     return (
         <>
             {recipes.code ? (
-                <div>
+                <div className={s.containerError}>
                     <img src={chefError} alt='error page' />
                     <h1>Oops... something went wrong, come back in a bit</h1>
                 </div>
-            ) : recipes.length === 0 ? (
+            ) : recipes[0] === "not found" ? (
                 <div className={s.containerEmpty}>
                     <h1>Recipe not found</h1>
+                </div>
+            ) : recipes.length === 0 ? (
+                <div className={sDetail.conteneinerLoading}>
+                    <div className={sDetail.loader} id="loader">Loading...</div>
                 </div>
             ) : (
                 <div className={s.conteinerAll}>

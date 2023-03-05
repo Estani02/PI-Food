@@ -48,13 +48,13 @@ export default function CreateRecipes() {
             ...input,
             [e.target.name]: e.target.value
         });
-        setError(validation(input, recipes));
     };
 
     function handleSubmit(e) {
         e.preventDefault();
         setError(validation(input, recipes));
-        if (!error) {
+        console.log(error);
+        if (error) {
             dispatch(postRecipe(input));
             alert("Your recipe has been created successfully");
             navigate('/home')
@@ -69,87 +69,92 @@ export default function CreateRecipes() {
         <div className={s.container}>
             <h1>CREATE YOUR OWN RECIPE</h1>
             <div className={s.containerInfo}>
-                <img src={chefCreate} alt="chef create" className={s.img} />
+                <div className={s.containerButtonImg}>
+                    <img src={chefCreate} alt="chef create" className={s.img} />
+                    <button type='submit' onClick={handleSubmit} className={s.button}>CREATE RECIPE</button>
+                </div>
                 <form onSubmit={(e) => handleSubmit(e)} className={s.form}>
-                    <input
-                        type='text'
-                        placeholder='Name Recipes'
-                        value={input.title}
-                        name="name"
-                        onChange={(e) => handelChange(e)}
-                        required
-                        className={s.name}
-                    />
-                    {error.name ? <span>*{error.name}</span> : undefined}
+                    <div className={s.containerinputsForm}>
+                        <input
+                            type='text'
+                            placeholder='Name Recipes'
+                            value={input.title}
+                            name="name"
+                            onChange={(e) => handelChange(e)}
+                            required
+                            className={s.name}
+                        />
+                        {error.name ? <span>*{error.name}</span> : undefined}
 
-                    <textarea
-                        type='text'
-                        placeholder='Summary'
-                        value={input.summary}
-                        onChange={(e) => handelChange(e)}
-                        name="summary"
-                        required
-                        className={s.summary}
-                    />
-                    {error.summary ? <span>*{error.summary}</span> : undefined}
+                        <textarea
+                            type='text'
+                            placeholder='Summary'
+                            value={input.summary}
+                            onChange={(e) => handelChange(e)}
+                            name="summary"
+                            required
+                            className={s.summary}
+                        />
+                        {error.summary ? <span>*{error.summary}</span> : undefined}
 
-                    <input
-                        type='number'
-                        placeholder='Health Score'
-                        value={input.health_score}
-                        onChange={(e) => handelChange(e)}
-                        name="health_score"
-                        maxLength="3"
-                        required
-                        className={s.health}
-                    />
-                    {error.health_score ? <span>*{error.health_score}</span> : undefined}
+                        <input
+                            type='number'
+                            placeholder='Health Score'
+                            value={input.health_score}
+                            onChange={(e) => handelChange(e)}
+                            name="health_score"
+                            maxLength="3"
+                            required
+                            className={s.health}
+                        />
+                        {error.health_score ? <span>*{error.health_score}</span> : undefined}
 
-                    <textarea
-                        type='text'
-                        placeholder='Steps'
-                        value={input.steps}
-                        onChange={(e) => handelChange(e)}
-                        name="steps"
-                        required
-                        className={s.steps}
-                    />
-                    {error.steps ? <span>*{error.steps}</span> : undefined}
+                        <textarea
+                            type='text'
+                            placeholder='Steps'
+                            value={input.steps}
+                            onChange={(e) => handelChange(e)}
+                            name="steps"
+                            required
+                            className={s.steps}
+                        />
+                        {error.steps ? <span>*{error.steps}</span> : undefined}
 
-                    <input
-                        type='text'
-                        placeholder='URL Image'
-                        value={input.image}
-                        onChange={(e) => handelChange(e)}
-                        name="image"
-                        required
-                        className={s.imgUrl}
-                    />
-                    {error.image ? <span>*{error.image}</span> : undefined}
-
-                    <div className={s.containerDiets}>
-                        {
-                            diets.map(diet => (
-                                <label key={diet.name} htmlFor={diet.name}>
-                                    <div className={s.byDiet}>
-                                        <input
-                                            type="checkbox"
-                                            id={diet.name}
-                                            value={diet.name}
-                                            onChange={(e) => handleSelect(e)}
-                                        />
-                                        <div className={s.circle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#2a852a7a' }}
-                                        ><img src={`images/diets/${diet.name}.png`} alt={diet.name} height="30px" /></div>
-                                        <div style={{ width: '8px' }}></div>
-                                        {diet.name[0].toUpperCase() + diet.name.slice(1)}
-                                    </div>
-                                </label>
-                            ))
-                        }
+                        <input
+                            type='text'
+                            placeholder='URL Image'
+                            value={input.image}
+                            onChange={(e) => handelChange(e)}
+                            name="image"
+                            required
+                            className={s.imgUrl}
+                        />
+                        {error.image ? <span>*{error.image}</span> : undefined}
                     </div>
-
+                    <div className={s.containerALLDiets}>
+                        <h4>CHOOSE THE DIETS</h4>
+                        <div className={s.containerDiets}>
+                            {
+                                diets.map(diet => (
+                                    <label key={diet.name} htmlFor={diet.name}>
+                                        <div className={s.byDiet}>
+                                            <input
+                                                type="checkbox"
+                                                id={diet.name}
+                                                value={diet.name}
+                                                onChange={(e) => handleSelect(e)}
+                                            />
+                                            <div className={s.circle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#2a852a7a' }}
+                                            ><img src={`images/diets/${diet.name}.png`} alt={diet.name} height="30px" /></div>
+                                            <div style={{ width: '8px' }}></div>
+                                            {diet.name[0].toUpperCase() + diet.name.slice(1)}
+                                        </div>
+                                    </label>
+                                ))
+                            }
+                        </div>
+                    </div>
                     {error.diets ? <span>{error.diets}</span> : undefined}
-                    <button type='submit' onClick={handleSubmit}>Create</button>
                 </form>
             </div>
         </div>

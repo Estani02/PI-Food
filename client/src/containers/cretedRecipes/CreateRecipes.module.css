@@ -1,5 +1,8 @@
 .container{
     margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .containerInfo{
@@ -10,8 +13,21 @@
 }
 .form{
     display: flex;
+    flex-direction: row;
+    /* padding: 15px; */
+}
+
+.containerinputsForm{
+    display: flex;
     flex-direction: column;
     /* padding: 15px; */
+}
+
+.containerButtonImg{
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form input, textarea, select {
@@ -25,17 +41,20 @@
 }
 
 .name{
-    width: 300px;
+    width: 400px;
     text-align: left;
 }
 
 .summary{
     resize: vertical;
+    height: 120px;
+    /* width: 400px; */
 }
 
 .steps{
     text-align: left;
     resize: vertical;
+    height: 120px;
 }
 
 .health{
@@ -49,7 +68,13 @@
 }
 
 .img{
-    width: 30%;
+    width: 500px;
+}
+
+.button{
+    width: 100%;
+    font-family: 'Robot';
+    font-size: 21px;
 }
 
 .form span{

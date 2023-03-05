@@ -83,6 +83,7 @@
 
 .conteneinerLoading{
     width: 100vh;
+    height: 100vh;
 }
 
 .loader {

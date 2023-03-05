@@ -23,6 +23,13 @@
     align-items: center;
 }
 
+.containerError{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media (max-width: 1200px) {
     .containerRecipes {
         grid-template-columns: 1fr 1fr;

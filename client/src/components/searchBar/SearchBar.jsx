@@ -12,6 +12,7 @@ export default function SearchBar() {
     function handleChange(e) {
         setInput(e.target.value);
         if (input.trim().length <= 1) {           //cuadno el input esta vacio(trim elimina los espacios vacios)
+            dispatch(getAllRecipes("loading"))
             dispatch(getAllRecipes())
         } else {
             dispatch(getSearchRecipes(input))   //cuando el input tien alg

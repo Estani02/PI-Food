@@ -40,12 +40,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
             }
 
         case GET_SEARCH_RECIPES:
+
+            const filterTile = [
+                ...state.temporal.filter((element) =>
+                    element.title.toString().toLowerCase().includes(payload.toString().toLowerCase()))
+            ] 
+
             return {
                 ...state,
-                temporal: [
-                    ...state.temporal.filter((element) =>
-                        element.title.toString().toLowerCase().includes(payload.toString().toLowerCase()))
-                ]
+                temporal: filterTile.length === 0 ? ["not found"] : filterTile
 
             }
 

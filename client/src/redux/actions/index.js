@@ -13,12 +13,14 @@ export const GET_DETAIL_RECIPE = "GET_DETAIL_RECIPE"
 const URL_API = "http://localhost:3001";
 
 
-export function getAllRecipes() {
+export function getAllRecipes(loading) {
     const urlAllRecipes = `${URL_API}/recipes`
     return async function (dispatch) {
-        const r = await fetch(urlAllRecipes);
-        const data = await r.json();
-        await dispatch({ type: GET_ALL_RECIPES, payload: data })
+        if(!loading){
+            const r = await fetch(urlAllRecipes);
+            const data = await r.json();
+            await dispatch({ type: GET_ALL_RECIPES, payload: data })
+        } else {dispatch({ type: GET_ALL_RECIPES, payload: [] })}
     }
 };
 
