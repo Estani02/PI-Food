@@ -1,11 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // eslint-disable-next-line jsx-a11y/anchor-is-valid
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Pagination.module.css'
 
 export default function Pagination({ page, max, setPage }) {
 
     const [input, setInput] = useState(1); //el estado input se va renderizar, y va ir cambiando segun vaya para atras o para adelante en el paginado
+
+    useEffect(() => {
+        setPage(1);
+        setInput(1);
+    }, [max, setPage])
+
 
     const prevPage = () => {
         setInput(parseInt(input - 1));
