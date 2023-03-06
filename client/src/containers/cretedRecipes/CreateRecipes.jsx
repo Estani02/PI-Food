@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getDiets, postRecipe } from '../../redux/actions'
+import { getAllRecipes, getDiets, postRecipe } from '../../redux/actions'
 import s from './CreateRecipes.module.css'
 import validation from './validation'
 import chefCreate from '../../utils/chefCreate.png'
@@ -22,11 +22,11 @@ export default function CreateRecipes() {
         image: "",
         diets: []
     });
-
+    // console.log(recipes);
     useEffect(() => {
         dispatch(getDiets())
-        // console.log(input.diets);
-    }, [dispatch])
+        dispatch(getAllRecipes())
+    }, [dispatch, error])
 
     function handleSelect(e) {
         if (e.target.checked) {
@@ -53,7 +53,6 @@ export default function CreateRecipes() {
     function handleSubmit(e) {
         e.preventDefault();
         setError(validation(input, recipes));
-        console.log(error);
         if (error) {
             dispatch(postRecipe(input));
             alert("Your recipe has been created successfully");
@@ -153,8 +152,8 @@ export default function CreateRecipes() {
                                 ))
                             }
                         </div>
+                        {error.diets ? <span>{error.diets}</span> : undefined}
                     </div>
-                    {error.diets ? <span>{error.diets}</span> : undefined}
                 </form>
             </div>
         </div>

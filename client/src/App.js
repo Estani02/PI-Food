@@ -6,7 +6,6 @@ import Home from './containers/home/Home';
 import LandingPage from './containers/landingPage/LandingPage';
 import Nav from './containers/nav/Nav';
 
-
 function App() {
 
   const location = useLocation();

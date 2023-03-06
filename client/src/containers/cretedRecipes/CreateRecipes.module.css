@@ -2,7 +2,6 @@
     margin-top: 60px;
     display: flex;
     flex-direction: column;
-
 }
 
 .containerInfo{
@@ -20,6 +19,7 @@
 .containerinputsForm{
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
     /* padding: 15px; */
 }
 
@@ -41,20 +41,20 @@
 }
 
 .name{
-    width: 400px;
+    width: 480px;
     text-align: left;
 }
 
 .summary{
     resize: vertical;
-    height: 120px;
+    height: 110px;
     /* width: 400px; */
 }
 
 .steps{
     text-align: left;
     resize: vertical;
-    height: 120px;
+    height: 150px;
 }
 
 .health{
