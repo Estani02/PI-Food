@@ -5,6 +5,7 @@ import { getAllRecipes, getDiets, postRecipe } from '../../redux/actions'
 import s from './CreateRecipes.module.css'
 import validation from './validation'
 import chefCreate from '../../utils/chefCreate.png'
+import swal from 'sweetalert';
 
 export default function CreateRecipes() {
 
@@ -53,16 +54,14 @@ export default function CreateRecipes() {
     function handleSubmit(e) {
         e.preventDefault();
         setError(validation(input, recipes));
-        if (error) {
+        if (!error) {
             dispatch(postRecipe(input));
-            alert("Your recipe has been created successfully");
+            swal("Good job!", "Recipe created successfuly!", "success");
             navigate('/home')
         } else {
-            alert("Something went wrong. Please try again.");
+            swal("Something went wrong. Please try again.", "", "error");
         }
     };
-
-
 
     return (
         <div className={s.container}>
