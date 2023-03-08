@@ -41,7 +41,7 @@ const getDbInfo = async () => {
             id: data.id,
             title: data.name,
             imag: data.image,
-            healthScore: data.healthScore,
+            health_score: data.health_score,
             summary: data.summary,
             steps: data.steps,
             createInDb: true,

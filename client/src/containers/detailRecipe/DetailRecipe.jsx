@@ -61,7 +61,7 @@ export default function DetailRecipe() {
                             <div className={s.containerDietHealth}>
                                 <div className={s.containerHealtScore}>
                                     <img src={iconHeart} alt="heart" className={s.icon} />
-                                    <p>{recipe.healthScore}</p>
+                                    <p>{recipe.healthScore || recipe.health_score}</p>
                                 </div>
                                 <ul className={s.diets}>
                                     <img src={iconDiet} alt="diet" className={s.icon} />

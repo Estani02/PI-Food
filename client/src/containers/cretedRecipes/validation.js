@@ -20,8 +20,8 @@ export default function validation({ name, summary, health_score, steps, image, 
     if (!summary) {
         error.summary = "A summary is required"
     }
-    if (summary.length < 400) {
-        error.summary = "The summary cannot be less than 400 characters."
+    if (summary.length < 30) {
+        error.summary = "The summary cannot be less than 30 characters."
     }
     if (summary.length > 2300) {
         error.summary = "The summary can't be longer than 2300 characters"
@@ -44,8 +44,8 @@ export default function validation({ name, summary, health_score, steps, image, 
     if (steps.length > 2300) {
         error.steps = "The steps can't be longer than 4000 characters"
     }
-    if (summary.length < 400) {
-        error.steps = "The steps cannot be less than 400 characters."
+    if (summary.length < 50) {
+        error.steps = "The steps cannot be less than 50 characters."
     }
     //IMAGE
     if(!image){

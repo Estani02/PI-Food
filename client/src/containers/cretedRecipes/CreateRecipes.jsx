@@ -27,7 +27,7 @@ export default function CreateRecipes() {
     useEffect(() => {
         dispatch(getDiets())
         dispatch(getAllRecipes())
-    }, [dispatch, error])
+    }, [dispatch])
 
     function handleSelect(e) {
         if (e.target.checked) {
@@ -35,11 +35,19 @@ export default function CreateRecipes() {
                 ...input,
                 diets: [...input.diets, e.target.value]
             })
+            setError(validation({
+                ...input,
+                diets: [...input.diets, e.target.value]
+            }, recipes))
         } else if (!e.target.checked) {
             setInput({
                 ...input,
                 diets: input.diets.filter(d => d !== e.target.value)
             })
+            setError(validation({
+                ...input,
+                diets: input.diets.filter(el => el !== e.target.value)
+            }, recipes))
         }
     };
 
@@ -49,12 +57,17 @@ export default function CreateRecipes() {
             ...input,
             [e.target.name]: e.target.value
         });
+        setError(validation({
+            ...input,
+            [e.target.name] : e.target.value
+        }, recipes));
     };
 
     function handleSubmit(e) {
         e.preventDefault();
         setError(validation(input, recipes));
-        if (!error) {
+        console.log(error);
+        if (Object.entries(error).length === 0 && input.name.length) {
             dispatch(postRecipe(input));
             swal("Good job!", "Recipe created successfuly!", "success");
             navigate('/home')
