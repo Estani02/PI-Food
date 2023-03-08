@@ -66,7 +66,6 @@ export default function CreateRecipes() {
     function handleSubmit(e) {
         e.preventDefault();
         setError(validation(input, recipes));
-        console.log(error);
         if (Object.entries(error).length === 0 && input.name.length) {
             dispatch(postRecipe(input));
             swal("Good job!", "Recipe created successfuly!", "success");
