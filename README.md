@@ -1,4 +1,4 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
+<img src="./cooking.png" alt="" />
 
 # **FOOD** | Proyecto Individual
 
@@ -143,5 +143,4 @@ Este formulario debe ser **controlado completamente con JavaScritp**. No se pued
 <br />
 
 <div align="center">
-<img src="./cooking.png" alt="" />
 </div>
