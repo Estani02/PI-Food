@@ -1,4 +1,8 @@
-<img src="./cooking.png" alt="" />
+Deploy de la página: [**https://food-app-olmedo-estanislao.up.railway.app**](https://food-app-olmedo-estanislao.up.railway.app) 
+## Resultados
+### Video presentacion del proyecto
+
+   [<img src="./cvimeo.png" alt="" />](https://vimeo.com/806919653)
 
 # **FOOD** | Proyecto Individual
 
