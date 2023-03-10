@@ -5,7 +5,7 @@ const numRecipe = 100;
 
 //TRAIGO LOS DATOS DE LA API Y LO DEVUELVO EN EN UN OBJETO JSON
 const getApiInfo = async () => {
-    const apiInfo = await axios(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=${numRecipe}&apiKey=${API_KEY}`);
+    const apiInfo = await axios(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`);
     const resultApiInfo = await apiInfo.data.results.map(data => {
     
         if(data.vegetarian){
