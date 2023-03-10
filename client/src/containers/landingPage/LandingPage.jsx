@@ -7,7 +7,7 @@ export default function LandingPage() {
     <div className={s.container}>
       <div className={s.content}>
         <div className={s.typewriter}>
-          <h1 className={s.title}>WELCOME TO THE FOOD APP </h1>
+          <h1 className={s.title}>WELCOME TO THE FOOD APP</h1>
           <div className={s.subtitle}>Proyect made by Estanislao Olmedo</div>
           <Link className={s.textDe} to="/home">
             <button className={s.btn}>Let's go</button>{" "}
