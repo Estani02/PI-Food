@@ -10,7 +10,7 @@ export const ORDER_SCORE = "ORDER_SCORE"
 export const POST_RECIPE = "POST_RECIPE"
 export const GET_DETAIL_RECIPE = "GET_DETAIL_RECIPE"
 
-const URL_API = "https://delicious-recipes-6sbx.onrender.com/";
+const URL_API = "https://delicious-recipes-6sbx.onrender.com";
 
 
 export function getAllRecipes(loading) {
