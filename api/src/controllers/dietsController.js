@@ -4,7 +4,7 @@ const {API_KEY} = process.env;
 const numRecipe = 45;
 
 const getAllDietsApi = async () => {
-    const apiInfo = await axios(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`);
+    const apiInfo = await axios(`https://run.mocky.io/v3/0efef83e-ca0e-4c2e-b9e1-70aa2e717464`);
     const diets = await apiInfo.data.results.map((recipe) => {
         return recipe.diets
     });

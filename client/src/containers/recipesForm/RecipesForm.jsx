@@ -25,6 +25,7 @@ export default function RecipesForm() {
 
     let onlyNightAllRecipe = undefined;
     let maxRecipes = undefined;
+    console.log(recipes.code);
     if (!recipes.code) {
         onlyNightAllRecipe = recipes
             .slice(                                    //El método slice() devuelve una copia de una parte del array dentro de un nuevo array empezando por inicio hasta fin (fin no incluido). El array original no se modificará.

@@ -5,7 +5,7 @@ const numRecipe = 100;
 
 //TRAIGO LOS DATOS DE LA API Y LO DEVUELVO EN EN UN OBJETO JSON
 const getApiInfo = async () => {
-    const apiInfo = await axios(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`);
+    const apiInfo = await axios(`https://run.mocky.io/v3/0efef83e-ca0e-4c2e-b9e1-70aa2e717464`);
     const resultApiInfo = await apiInfo.data.results.map(data => {
     
         if(data.vegetarian){
